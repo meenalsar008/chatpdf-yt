@@ -1,5 +1,4 @@
 // api/stripe
-
 import { db } from "@/lib/db";
 import { userSubscriptions } from "@/lib/db/schema";
 import { auth, currentUser } from "@clerk/nextjs/server";
@@ -7,7 +6,8 @@ import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { stripe } from "@/lib/stripe";
 
-const return_url = process.env.NEXT_BASE_URL + "/";
+const baseUrl = process.env.NEXT_BASE_URL || "https://chatgpt.com";
+const return_url = `${baseUrl}/`;
 
 export async function GET() {
     try {
